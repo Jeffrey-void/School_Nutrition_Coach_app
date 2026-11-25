@@ -1,7 +1,7 @@
 # 급식영양 코치 - 의존성 라이브러리
 
 # Streamlit
-streamlit==1.28.1
+streamlit>=1.0.0
 
 # 환경변수 관리
 python-dotenv==1.0.0
