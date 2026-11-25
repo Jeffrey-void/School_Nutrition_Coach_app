@@ -6,7 +6,8 @@
 
 - **목표**: 학교 급식에서 건강한 메뉴를 찾아 학생들이 올바른 식단을 선택하도록 돕기
 - **데이터**: NEIS(나이스) Open API - 교육부 공식 급식 정보
-- **플랫폼**: Flask 기반 웹 애플리케이션
+- **플랫폼**: Streamlit 기반 웹 애플리케이션
+- **배포**: [🌐 Streamlit Cloud 바로가기](https://school-nutrition-coach-app.streamlit.app)
 
 ## ✨ 주요 기능
 
@@ -31,38 +32,81 @@
 
 ## 🚀 설치 & 실행
 
-### 사전 요구사항
+### 옵션 1: Streamlit Cloud 사용 (추천) ⭐
+
+**가장 간단합니다! 설치/실행 불필요**
+
+👉 [🌐 여기를 클릭해서 바로 사용](https://school-nutrition-coach-app.streamlit.app)
+
+---
+
+### 옵션 2: 로컬에서 실행
+
+#### 사전 요구사항
 - Python 3.8+
 - pip
 
-### 1. 프로젝트 클론
+#### 1. 프로젝트 클론
 ```bash
 git clone https://github.com/yourusername/School-Nutrition-Coach-app.git
 cd School-Nutrition-Coach-app
 ```
 
-### 2. NEIS API 인증키 발급
+#### 2. NEIS API 인증키 발급
 - [NEIS 교육정보 개방 포털](https://open.neis.go.kr)에 접속
 - 회원가입 후 "인증키 신청" 메뉴에서 발급
 
-### 3. 환경 변수 설정
+#### 3. 환경 변수 설정
 `.env` 파일을 생성하고 아래 내용을 추가합니다:
 
 ```
 NEIS_DATA_OPEN_API_KEY=your_api_key_here
 ```
 
-### 4. 의존성 설치
+(`.env.example` 복사해서 수정하면 됩니다)
+
+#### 4. 의존성 설치
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5. 애플리케이션 실행
+#### 5. 애플리케이션 실행
 ```bash
-python School_Nutrition_Coach.py
+streamlit run app.py
 ```
 
-웹 브라우저에서 `http://localhost:5000` 접속
+웹 브라우저에서 `http://localhost:8501` 에서 사용
+
+---
+
+### 옵션 3: Streamlit Cloud에 배포
+
+#### 1. GitHub에 푸시
+```bash
+git add .
+git commit -m "초기 커밋: 급식영양 코치 Streamlit 버전"
+git push origin main
+```
+
+#### 2. Streamlit Cloud 배포
+1. [Streamlit Cloud](https://streamlit.io/cloud)에 접속
+2. GitHub 계정으로 로그인
+3. "New app" 클릭
+4. Repository: `yourusername/School-Nutrition-Coach-app`
+5. Branch: `main`
+6. Main file path: `app.py`
+7. Deploy 클릭
+
+#### 3. Secrets 설정
+Streamlit Cloud 앱 설정에서:
+1. "Secrets" 메뉴 클릭
+2. 아래 내용 붙여넣기:
+```toml
+NEIS_DATA_OPEN_API_KEY = "your_api_key_here"
+```
+3. Save 클릭
+
+✅ 배포 완료! 공개 링크 공유 가능
 
 ## 📁 프로젝트 구조
 
@@ -80,15 +124,19 @@ project5_School_Nutrition_Coach_app/
 └── README.md                    # 이 파일
 ```
 
-## 🔧 주요 API 엔드포인트
+## 🔧 기술 스택
 
-| 엔드포인트 | 메서드 | 설명 |
-|-----------|--------|------|
-| `/` | GET | 메인 페이지 |
-| `/api/regions` | GET | 지역 목록 조회 |
-| `/api/schools/<atpt_code>` | GET | 학교 검색 |
-| `/api/meals` | GET | 급식 정보 조회 |
-| `/api/analyze` | POST | 건강한 음식 분석 |
+### Streamlit 버전 (권장)
+- **Frontend**: Streamlit UI 자동 생성
+- **Backend**: Python 단일 파일 (`app.py`)
+- **API**: NEIS Open API (JSON)
+- **배포**: Streamlit Cloud (무료)
+
+### Flask 버전 (로컬용)
+- **Frontend**: HTML/CSS/JavaScript (Vanilla)
+- **Backend**: Flask (Python)
+- **API**: NEIS Open API (JSON)
+- **배포**: 로컬 실행만 가능
 
 ## 📊 사용한 기술
 
